@@ -1,7 +1,8 @@
 <html>
-
 <body>
 
-Hello! Welcome to profile!
+
+
+<?php include("Header.php");?>
 </body>
 </html>
