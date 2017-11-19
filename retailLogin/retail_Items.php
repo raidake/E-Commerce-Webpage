@@ -49,39 +49,73 @@ if(isset($_GET['operation'])){
 
 <?php include("Header.php");?>
 <html>
+<head>
+<style type="text/css">@import "styles.css";
+	body {font-family: Arial;}
+	button { 
+		background-color: #4CAF50;
+		color: white;
+		padding: 14px 20px;
+		margin: 8px 0;
+		border: none;
+		cursor: pointer;
+		width: 100%;
+	}
+	
+	input[type=text]{
+		width: 100%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		display: inline-block;
+		border: 2px solid #ccc;
+		box-sizing: border-box;
+	}	
+	input:focus { 
+		outline:none;
+		border-color:#9ecaed;
+		box-shadow:0 0 10px #9ecaed;
+	}
+	.container {
+		padding: 50px;
+		width:550px;
+		margin: auto;
+	}
+	table {
+		border-collapse: collapse;
+		width: 90%;
+	}
+	th, td {
+		padding: 8px;
+		text-align: left;
+		border-bottom: 1px solid #ddd;
+	}
+tr:hover {background-color:#f5f5f5;}
+</style>
+</head>
+<body>
+	</style>
+</head>
 <body>
 
 	<form method="post" action="retail_Items.php">
+		<div class="container">
+		<label><b>Item Name:</b></label>
+		<input type="text" placeholder="Enter Item Name" name="itemname" required>
 		
-		<table align="center" border="0">
-		<tr>
-		<td>Item Name:</td>
-		<td><input type="text" name="itemname" /></td>
-		</tr>
-		<tr>
-		<td>Stock:</td>
-		<td><input type="text" name="stock" /></td>
-		</tr>
-		<tr>
-		<td>Item Cost:</td>
-		<td><input type="text" name="cost" /></td>
-		</tr>
-		<tr>
-		<td>Item Description:</td>
-		<td><input type="text" name="desc" /></td>
-		</tr>
-		<tr>
-		<td>Retails ID:</td>
-		<td><input type="text" name="retails_ID" /></td>
-		</tr>
-		<tr>
-		<td>&nbsp;</td>
-		<td align="right">
+		<label><b>Stock:</b></label>
+		<input type="text" placeholder="Enter No. of Stock" name="stock" required/>
+		
+		<label><b>Item Cost:</b></label>
+		<input type="text" placeholder="Enter Cost of Each Item" name="cost" required/>
+		
+		<label><b>Item Description:</b></label>
+		<input type="text" placeholder="Enter Item Description" name="desc" required/>
+		
+		<input type="hidden" value="01" name="retails_ID">
+		
 		<input type="hidden" name="insert" value="yes" />
-		<input type="submit" value="Add Item"/>
-		</td>
-		</tr>
-		</table>
+		<button type="submit" value="Add Item"/>Add Item</button>
+		</div>
 	</form>
 <?php
 $query=$connect->prepare("select item_ID, item_Name, stock, item_Cost, item_Description from retail_items");
@@ -103,8 +137,9 @@ while($query->fetch())
 	echo "<td>".$stock."</td>";
 	echo "<td>".$cost."</td>";
 	echo "<td>".$desc."</td>";
-	echo "<td><a href='edit.php?operation=edit&item_ID=".$item_ID."&item_Name=".$itemname."&stock=".$stock."&cost=".$cost."&item_Description=".$desc."'>edit</a></td>";
-	echo "<td><a href='retail_Items.php?operation=delete&item_ID=".$item_ID."'>delete</a></td>";
+	echo "<td><a href='edit.php?operation=edit&item_ID=".$item_ID."&item_Name=".$itemname."&stock=".$stock."&cost=".$cost."&item_Description=".$desc."' >Edit</a></td>";
+	
+	echo "<td><a href='retail_Items.php?operation=delete&item_ID=".$item_ID."'>Delete</a></td>";
 	echo "</tr>";	
 	
 }

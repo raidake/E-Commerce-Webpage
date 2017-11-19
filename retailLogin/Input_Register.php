@@ -5,6 +5,7 @@ $con = mysqli_connect("localhost","root","","retailers");
 if (mysqli_connect_errno()){
 	die('Could not connect: ' . mysqli_connect_errno());
 }
+include("Header.php");
 $user = $_POST['iuser'];
 $pwd = $_POST['ipwd'];
 $company_name = $_POST['icomp'];

@@ -1,7 +1,7 @@
 <html>
 <head>
 <style>
-body {margin:0;}
+body {margin:0;font-family: Arial;}
 
 ul {
     list-style-type: none;
@@ -29,18 +29,17 @@ li a {
 li a:hover {
     background-color: #111;
 }
-.active {
-    background-color: #4CAF50;
-}
+
 </style>
 
 </head>
 <body>
 <ul>
-  <li><a class="active" href="#home">Home</a></li>
+  <li><a href="#home">Home</a></li>
   <li><a href="retail_Items.php">Wares</a></li>
   <li><a href="#contact">Contact</a></li>
   <li><a href="Profile.php">Profile</a></li>
+  <li style="float:right"><a href="Register.php">Register</a></li>
 </ul>
 <div style="padding:20px;margin-top:30px;"> </div>
 </body>

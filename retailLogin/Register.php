@@ -27,11 +27,12 @@
 		margin: 8px 0;
 		border: none;
 		cursor: pointer;
-		width: 100%;
+		width: 50%;
+		position:absolute;
+		left: 25%;
 	}
 
 	.signupbtn {
-		float: left;
 		width: 50%;
 	}
 	
