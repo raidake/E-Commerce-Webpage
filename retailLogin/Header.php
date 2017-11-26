@@ -3,7 +3,7 @@
 <style>
 body {margin:0;font-family: Arial;}
 
-ul {
+ul.a {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -34,7 +34,7 @@ li a:hover {
 
 </head>
 <body>
-<ul>
+<ul class="a">
   <li><a href="#home">Home</a></li>
   <li><a href="retail_Items.php">Wares</a></li>
   <li><a href="#contact">Contact</a></li>
