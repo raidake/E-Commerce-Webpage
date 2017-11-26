@@ -5,7 +5,7 @@
  
 	body {font-family: Arial;}
 	
-	input[type=text], input[type=password]{
+	input[type=text], input[type=password], input[type=email], input[type=number]{
 		width: 100%;
 		padding: 12px 20px;
 		margin: 8px 0;
@@ -62,16 +62,16 @@
 			<input type="password" placeholder="Enter Password" name="ipwd" maxlength="32" required> 
 			
 			<label><b>E-Mail</b></label>
-			<input type="text" placeholder="Enter E-Mail" name="imail" maxlength="254" required>
+			<input type="email" placeholder="Enter E-Mail" name="imail" maxlength="254" required>
 			
 			<label><b>Company Name</b></label>
 			<input type="text" placeholder="Enter Company Name" name="icomp" maxlength="100" required>
 			
 			<label><b>Contact Number</b></label>
-			<input type="text" placeholder="Enter Contact Number" maxlength="8" name="inumber" required> 
+			<input type="number" placeholder="Enter Contact Number" maxlength="8" name="inumber" required> 
 			
 			<label><b>Company Address</b></label>
-			<input type="text" placeholder="Enter Company Address" maxlength="100" name="iaddr" > 
+			<textarea type="text" style="height:200px; width:550px; font-family:arial; resize:none" placeholder="Enter Company Address" maxlength="100" name="iaddr" ></textarea>
 			
 			<label><b>Company Description</b></label>
 			<textarea type="text" style="height:200px; width:550px; font-family:arial; resize:none" placeholder="Not more than 200 words...." maxlength="200" name="idesc" ></textarea>
