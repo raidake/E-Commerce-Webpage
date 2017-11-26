@@ -35,10 +35,10 @@ if(isset($_POST["update"]))
 }
 
 
-if(isset($_GET['operation'])){
-	if($_GET['operation']=="delete")
+if(isset($_POST['operation'])){
+	if($_POST['operation']=="delete")
 	{
-		$query=$connect->prepare("delete from retail_items where item_ID=".$_GET['item_ID']);
+		$query=$connect->prepare("delete from retail_items where item_ID=".$_POST['item_ID']);
 		if($query->execute())
 		{
 			echo "<center>Record Deleted!</center><br>";
@@ -52,17 +52,19 @@ if(isset($_GET['operation'])){
 <head>
 <style type="text/css">@import "styles.css";
 	body {font-family: Arial;}
-	button { 
+	.button { 
 		background-color: #4CAF50;
 		color: white;
 		padding: 14px 20px;
 		margin: 8px 0;
 		border: none;
 		cursor: pointer;
-		width: 100%;
+		width: 50%;
 	}
-	
-	input[type=text]{
+	.button1 { 
+		background-color: #f44336;
+	}
+	input[type=text], input[type=number]{
 		width: 100%;
 		padding: 12px 20px;
 		margin: 8px 0;
@@ -82,34 +84,36 @@ if(isset($_GET['operation'])){
 	}
 	table {
 		border-collapse: collapse;
-		width: 90%;
+		width: 75%;
 	}
 	th, td {
-		padding: 8px;
-		text-align: left;
+		padding: 1px;
+		text-align: center;
 		border-bottom: 1px solid #ddd;
 	}
-tr:hover {background-color:#f5f5f5;}
+	tr:hover {background-color:#f5f5f5;}
+
 </style>
 </head>
 <body>
 	</style>
 </head>
 <body>
+	
 
-	<form method="post" action="retail_Items.php">
+	<form method="post" action="retail_Items.php" autocomplete="off" />
 		<div class="container">
 		<label><b>Item Name:</b></label>
 		<input type="text" placeholder="Enter Item Name" name="itemname" required>
 		
 		<label><b>Stock:</b></label>
-		<input type="text" placeholder="Enter No. of Stock" name="stock" required/>
+		<input type="number" min="0" placeholder="Enter No. of Stock" name="stock" required/>
 		
 		<label><b>Item Cost:</b></label>
-		<input type="text" placeholder="Enter Cost of Each Item" name="cost" required/>
+		<input type="number" min="0.01" step="0.01" placeholder="Enter Cost of Each Item" name="cost" required/>
 		
 		<label><b>Item Description:</b></label>
-		<input type="text" placeholder="Enter Item Description" name="desc" required/>
+		<input type="text" placeholder="Enter Item Description" name="desc" />
 		
 		<input type="hidden" value="01" name="retails_ID">
 		
@@ -135,11 +139,26 @@ while($query->fetch())
 	echo "<td>".$item_ID."</td>";
 	echo "<td>".$itemname."</td>";
 	echo "<td>".$stock."</td>";
-	echo "<td>".$cost."</td>";
+	echo "<td> $".$cost."</td>";
 	echo "<td>".$desc."</td>";
-	echo "<td><a href='edit.php?operation=edit&item_ID=".$item_ID."&item_Name=".$itemname."&stock=".$stock."&cost=".$cost."&item_Description=".$desc."' >Edit</a></td>";
+	echo '<td>
+			<form method="post" action="edit.php">
+				<input type="hidden" name="item_ID" value="'.$item_ID.'" />
+				<input type="hidden" name="itemname" value="'.$itemname.'" />
+				<input type="hidden" name="stock" value="'.$stock.'" />
+				<input type="hidden" name="cost" value="'.$cost.'" />
+				<input type="hidden" name="desc" value="'.$desc.'" />
+				<button class="button" type ="submit">Edit</button>
+			</form>
+		</td>';
 	
-	echo "<td><a href='retail_Items.php?operation=delete&item_ID=".$item_ID."'>Delete</a></td>";
+	echo '<td>
+			<form method="post" action="retail_Items.php">
+				<input type="hidden" name="operation" value="delete">
+				<input type="hidden" name="item_ID" value="'.$item_ID.'" />
+				<button class="button button1" type ="submit" name="delete">Delete</button>
+			</form>
+		</td>';
 	echo "</tr>";	
 	
 }
